@@ -82,9 +82,9 @@ h5{
 h6{
     font-size:13px
 }
-
+ 
 a{
-    display:inline-block
+    display:inline-block;
 }
 
 a:active,a:focus,a:hover{
@@ -550,7 +550,7 @@ input.au-input.au-input-xl{
     padding-bottom:5px;
     font-weight:600;
     padding-top:12px;
-    margin-bottom:7px
+    margin-bottom:7px;
 }
 .product-box h2{
     font-size:15px;
