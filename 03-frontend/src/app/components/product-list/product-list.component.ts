@@ -10,10 +10,16 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[];
-  currentCategoryId: any;
-  currentCategoryIdStr: string;
-  searchMode: boolean;
+  products: Product[] = [];
+  currentCategoryId: any = 1;
+  previousCategoryId: any = 1;
+  searchMode: boolean = false;
+
+  // new properties for pagination
+  thePageNumber: number = 1;
+  thePageSize: number = 1;
+  theTotalElments: number = 0;
+  
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute) { }
@@ -50,7 +56,7 @@ export class ProductListComponent implements OnInit {
   }
 
   handleListProducts(){
-    // check if "id" parameter is avilable
+    // check if "id" parameter is avilabale
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
     
     if(hasCategoryId){
@@ -60,11 +66,29 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = 1;
     }
 
-    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => {
-        this.products = data;
-      }    
-    )
+    // check if we have a diffrent category than previous
+    // If we have then set thePageNumber back to
+    if(this.previousCategoryId = this.currentCategoryId){
+      this.thePageNumber = 1;
+    }
+
+    this.previousCategoryId = this.currentCategoryId;
+
+    console.log(`currentCategoryId= ${this.currentCategoryId}, thePageNumber=${this.thePageNumber}, `)
+
+    this.productService.getProductListPaginate(this.thePageNumber -1,
+                                              this.thePageSize,
+                                              this.currentCategoryId)
+                                              .subscribe(this.processReult());
+  }
+
+  processReult() {
+    return (data: { _embedded: { products: Product[]; }; page: { number: number; size: number; totalElements: number; }; }) => {
+      this.products = data._embedded.products;
+      this.thePageNumber = data.page.number + 1;
+      this.thePageSize = data.page.size;
+      this.theTotalElments = data.page.totalElements;  
+    };
   }
 
 }
