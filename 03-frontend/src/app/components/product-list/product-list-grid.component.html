@@ -35,6 +35,8 @@
                                 <ngb-pagination [(page)]="thePageNumber"
                                                 [pageSize]="thePageSize"
                                                 [collectionSize]="theTotalElments"
+                                                [maxSize]="3"
+                                                [boundaryLinks]="true"
                                                 (pageChange)="listProducts()" >
 
                                 </ngb-pagination>
@@ -55,7 +57,7 @@
                 </div>
             </div>
             <!-- end footer -->    
-            
+
         </div>
     </div>
 </div>
