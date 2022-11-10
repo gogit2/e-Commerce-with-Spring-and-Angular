@@ -10,8 +10,8 @@ export class CartService {
 
   cartItems: CartItem[] = [];
 
-  totalPrice: Subject<number> = new Subject<number>; 
-  totalQuantity: Subject<number> = new Subject<number>; 
+  totalPrice: Subject<number> = new Subject<number>(); 
+  totalQuantity: Subject<number> = new Subject<number>(); 
 
 
   constructor() { }
@@ -20,7 +20,7 @@ export class CartService {
 
     // check if we already have the item in our cart
     let alreadyExistsInCart: boolean = false;
-    let existingCartItem: CartItem = undefined;
+    let existingCartItem: CartItem | undefined;
 
     if(this.cartItems.length > 0){
       // find the item in the cart based on item id 
@@ -36,8 +36,9 @@ export class CartService {
     }
 
     if(alreadyExistsInCart){
-      // incrememt the quantity
-      existingCartItem.quantity++;
+      if (existingCartItem != undefined)
+        // incrememt the quantity
+        existingCartItem.quantity++;
     } else{
       // add it to Cart Items
       this.cartItems.push(theCartItem);
