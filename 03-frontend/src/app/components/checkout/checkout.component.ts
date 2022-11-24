@@ -26,7 +26,14 @@ export class CheckoutComponent implements OnInit {
         city: [''],
         state: [''],
         zipCode: ['']
-      }) 
+      }),
+      billingAddress: this.formBuilder.group({
+        country: [''],
+        street: [''],
+        city: [''],
+        state: [''],
+        zipCode: ['']
+      })
     })
   }
   
@@ -35,5 +42,7 @@ export class CheckoutComponent implements OnInit {
     console.log(this.checkoutFormGroup.get('customer')?.value)
     console.log("==========================================")
     console.log(this.checkoutFormGroup.get('shippingAddress')?.value)
+    console.log("==========================================")
+    console.log(this.checkoutFormGroup.get('billingAddress')?.value)
   }
 }
