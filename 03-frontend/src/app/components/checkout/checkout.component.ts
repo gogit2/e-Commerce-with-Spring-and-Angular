@@ -19,12 +19,21 @@ export class CheckoutComponent implements OnInit {
         firstName: [''],
         lastName: [''],
         email: ['']
-      })
+      }),
+      shippingAddress: this.formBuilder.group({
+        country: [''],
+        street: [''],
+        city: [''],
+        state: [''],
+        zipCode: ['']
+      }) 
     })
   }
- 
+  
   onSubmit(){
     console.log("Handling the submit button");
     console.log(this.checkoutFormGroup.get('customer')?.value)
+    console.log("==========================================")
+    console.log(this.checkoutFormGroup.get('shippingAddress')?.value)
   }
 }
