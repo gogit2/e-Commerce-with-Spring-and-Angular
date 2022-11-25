@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
+
 export class CheckoutComponent implements OnInit {
 
   checkoutFormGroup: FormGroup;
@@ -34,7 +35,7 @@ export class CheckoutComponent implements OnInit {
         state: [''],
         zipCode: ['']
       })
-    })
+    });
   }
   
   copyShippingAddressToBillingAddress(event) {
@@ -45,6 +46,7 @@ export class CheckoutComponent implements OnInit {
       this.checkoutFormGroup.controls.billingAddress.reset();
     }
   }
+  
   onSubmit(){
     console.log("Handling the submit button");
     console.log(this.checkoutFormGroup.get('customer')?.value)

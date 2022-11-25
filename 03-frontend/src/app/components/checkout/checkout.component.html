@@ -36,14 +36,6 @@
                     </div>
                 </div>
 
-                <!-- Add check box to copy shipping to billing -->
-                <div class="input-space">
-                    <label class="au-checkox">
-                        <input type="checkbox" (change)="copyShippingAddressToBillingAddress($event)">
-                        <span class="au-checkmark"></span>Billing Address same as Shipping Address 
-                    </label>
-                </div>
-
                 <!-- shippingAddress form group -->
                 <div formGroupName="shippingAddress" class="form-area">
                     <h3>Shipping Address</h3>
@@ -99,6 +91,14 @@
 
                 </div>
 
+                <!-- Add check box to copy shipping to billing -->
+                <div class="input-space">
+                    <label class="au-checkox">
+                        <input type="checkbox" (change)="copyShippingAddressToBillingAddress($event)">
+                        <span class="au-checkmark"></span> Billing Address same as Shipping Address 
+                    </label>
+                </div>
+                
                  <!-- billingAddress form group -->
                  <div formGroupName="billingAddress" class="form-area">
                     <h3>Billing Address</h3>
