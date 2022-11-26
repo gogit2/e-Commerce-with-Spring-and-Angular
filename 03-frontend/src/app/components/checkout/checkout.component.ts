@@ -12,8 +12,8 @@ import { CreditCardService } from 'src/app/services/credit-card.service';
 export class CheckoutComponent implements OnInit {
 
   checkoutFormGroup: FormGroup;
-  totalQuantity : number = 0;
-  totalPrice : number = 0;
+  totalQuantity = 0;
+  totalPrice = 0;
   creditCardMonths: number[] = [];
   creditCardYears: number[] = [];
 
@@ -72,22 +72,22 @@ export class CheckoutComponent implements OnInit {
         this.creditCardYears = data;
       }
     );
-
+     
+    this.reviewCartDetails(); 
+  }
+  
+  reviewCartDetails(){   
     // subscribe to the cart totalPrce
     this.cartService.totalPrice.subscribe(
-      
-      data => {
-        console.log('totalPrice --------> ' + JSON.stringify(data));
-        this.totalPrice = data;
-      }
+      data => this.totalPrice = data
     );
 
     // subscribe to the cart totalQuantity
     this.cartService.totalQuantity.subscribe(
       data => this.totalQuantity = data
-    );  
+    ); 
   }
-  
+
   copyShippingAddressToBillingAddress(event) {
     if(event.target.checked){
       this.checkoutFormGroup.controls.billingAddress
@@ -128,7 +128,5 @@ export class CheckoutComponent implements OnInit {
     console.log("==========================================")
     console.log(this.checkoutFormGroup.get('billingAddress')?.value)
   }
-
-  
     
 }
