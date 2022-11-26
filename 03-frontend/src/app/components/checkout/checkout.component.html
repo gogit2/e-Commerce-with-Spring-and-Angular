@@ -163,7 +163,8 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <select formControlName="cardType">
-                                    <option>To Do</option>
+                                    <option>Visa</option>
+                                    <option>Mastercard</option>
                                 </select>
                             </div>
                         </div>
@@ -201,7 +202,7 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <select formControlName="expirationMonth">
-                                    <option>To Do</option>
+                                    <option *ngFor="let theMonth of creditCardMonths"> {{ theMonth }}</option>
                                 </select>
                             </div>
                         </div>
@@ -211,8 +212,10 @@
                         <div class="col-md-2"><label>Expiration Year</label></div>
                         <div class="col-md-9">
                             <div class="input-space">
-                                <select formControlName="expirationYear">
-                                    <option>To Do</option>
+                                <select formControlName="expirationYear" (change)="handleMonthsAndYear()">
+                                    <option *ngFor="let theYear of creditCardYears">
+                                        {{ theYear }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -220,7 +223,14 @@
 
                 </div>
 
-                
+                <!-- order details --> 
+                <div class="form-area"> 
+                    <h3>Review Your Order</h3>
+                    <p>Total Quantity: {{ totalQuantity }}</p>
+                    <p>Shipping: Free</p>
+                    <p>Total Price: {{ totalPrice | currency: 'USD'}}</p>
+                </div>
+
                 <!-- submit button --> 
                 <div class="text-center">
                     <button type="submit" class="btn btn-info">Purchase</button>
