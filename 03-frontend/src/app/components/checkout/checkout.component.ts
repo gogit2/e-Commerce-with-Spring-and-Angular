@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Country } from 'src/app/common/country';
 import { CartService } from 'src/app/services/cart.service';
 import { CreditCardService } from 'src/app/services/credit-card.service';
 
@@ -16,6 +17,7 @@ export class CheckoutComponent implements OnInit {
   totalPrice = 0;
   creditCardMonths: number[] = [];
   creditCardYears: number[] = [];
+  countries: Country[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private creditCardService: CreditCardService, 
@@ -74,6 +76,14 @@ export class CheckoutComponent implements OnInit {
     );
      
     this.reviewCartDetails(); 
+
+    // subscribe to countries
+    this.creditCardService.getCountries().subscribe(
+      data => {
+        console.log("Retrived countries " + JSON.stringify(data));
+        this.countries = data;
+      }
+    )
   }
   
   reviewCartDetails(){   

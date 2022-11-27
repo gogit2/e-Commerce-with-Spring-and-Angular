@@ -45,7 +45,9 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <select formControlName="country">
-                                    <option>To Do</option>
+                                    <option *ngFor="let theCountry of countries" [ngValue]="theCountry">
+                                         {{ theCountry.name }} 
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -108,7 +110,9 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <select formControlName="country">
-                                    <option>To Do</option>
+                                    <option *ngFor="let theCountry of countries" [ngValue]="theCountry">
+                                        {{ theCountry.name }} 
+                                   </option>
                                 </select>
                             </div>
                         </div>
