@@ -7,7 +7,7 @@ export class IuShopValidators {
         if((control.value != null) && (control.value.trim().length === 0)){
             
             // invalid, retyrn error object
-            return {'notOnlyWhitespace' : true};
+            return {'notOnlyWhitespace' : true};    
         } else {
             // valid, return null
             return null;
