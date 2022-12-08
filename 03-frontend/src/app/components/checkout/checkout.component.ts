@@ -249,7 +249,7 @@ export class CheckoutComponent implements OnInit {
       error: err => {
         alert(`There was an error: ${err.message}`);  
       } 
-    })
+    });
 
   }
 

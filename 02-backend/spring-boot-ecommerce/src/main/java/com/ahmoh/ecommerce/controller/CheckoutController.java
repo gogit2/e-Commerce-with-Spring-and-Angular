@@ -3,10 +3,7 @@ package com.ahmoh.ecommerce.controller;
 import com.ahmoh.ecommerce.dto.Purchase;
 import com.ahmoh.ecommerce.dto.PurchaseResponse;
 import com.ahmoh.ecommerce.service.CheckoutService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("http://localhost:4200/")
 @RestController
@@ -19,6 +16,7 @@ public class CheckoutController {
         this.checkoutService = checkoutService;
     }
 
+    @PostMapping("/purchase")
     public PurchaseResponse placeOrder(@RequestBody Purchase purchase){
         PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);
 
